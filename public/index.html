@@ -22,6 +22,7 @@
         const response =  fetch('/.netlify/functions/hello-world')
           .then(response => response.json())
           .then(data => {
+            console.log(data)
             responseText.innerText = data.message
           })
       })
