@@ -19,11 +19,16 @@
       const responseText = document.getElementById('response-output')
 
       fetchBtn.addEventListener('click', () => {
-        const response =  fetch('/.netlify/functions/hello-world')
-          .then(response => response.json())
+        const response = fetch('/.netlify/functions/hello-world')
+          .then(response => {
+            return response.json()
+          })
           .then(data => {
             console.log(data)
             responseText.innerText = data.message
+          }).catch(error => {
+            console.error('Error fetching the serverless function:', error)
+            responseText.innerText = 'Error fetching the serverless function.'
           })
       })
     })
