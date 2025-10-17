@@ -19,11 +19,11 @@
       const responseText = document.getElementById('response-output')
 
       fetchBtn.addEventListener('click', () => {
-        const response = await fetch('/.netlify/functions/hello-world')
-          .then(response => response.json()
-          )
-
-        responseText.innerText = response
+        const response =  fetch('/.netlify/functions/hello-world')
+          .then(response => response.json())
+          .then(data => {
+            responseText.innerText = data.message
+          })
       })
     })
   </script>
