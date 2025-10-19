@@ -11,16 +11,32 @@
 <body>
   <h1>Up and Running with Serverless Functions</h1>
   <button id="fetch-btn">Fetch</button>
+  <button id="fetch-btn2">Fetch 2</button>
   <p id="response-output">Response Placeholder</p>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const fetchBtn = document.getElementById('fetch-btn')
+      const fetchBtn2 = document.getElementById('fetch-btn2')
       const responseText = document.getElementById('response-output')
 
       fetchBtn.addEventListener('click', async () => {
         try {
           const res = await fetch('/.netlify/functions/hello-world')
+          if (!res.ok) {
+            throw new Error(`Request failed: ${res.status}`)
+          }
+          const data = await res.json()
+          responseText.innerText = data.message
+        } catch (err) {
+          responseText.innerText = `Error: ${err.message}`
+          console.error(err)
+        }
+      })
+
+      fetchBtn2.addEventListener('click', async () => {
+        try {
+          const res = await fetch('/.netlify/edge-functions/hello')
           if (!res.ok) {
             throw new Error(`Request failed: ${res.status}`)
           }
