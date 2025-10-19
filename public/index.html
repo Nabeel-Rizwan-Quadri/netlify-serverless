@@ -36,7 +36,7 @@
 
       fetchBtn2.addEventListener('click', async () => {
         try {
-          const res = await fetch('/.netlify/edge-functions/hello')
+          const res = await fetch('/.netlify/functions/main')
           if (!res.ok) {
             throw new Error(`Request failed: ${res.status}`)
           }
