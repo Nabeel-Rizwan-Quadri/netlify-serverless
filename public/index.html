@@ -41,7 +41,8 @@
             throw new Error(`Request failed: ${res.status}`)
           }
           const data = await res.json()
-          responseText.innerText = data.message
+          // need to show the entire response message
+          responseText.innerText = JSON.stringify(data)
         } catch (err) {
           responseText.innerText = `Error: ${err.message}`
           console.error(err)
